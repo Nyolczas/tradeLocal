@@ -1,0 +1,61 @@
+{
+    "color": [
+        {
+            "audusd": "#5D753E"
+        },
+        {
+            "audcad": "#67976D"
+        },
+        {
+            "audjpy": "#939F4A"
+        },
+        {
+            "cadjpy": "#E1926A"
+        },
+        {
+            "chfjpy": "#B1626F"
+        }, 
+        {
+            "euraud": "#00AB94"
+        },
+        {
+            "eurgbp": "#00619F"
+        },
+        {
+            "eurjpy": "#AF9C77"
+        },
+        {
+            "eurusd": "#894C69"
+        },
+        {
+            "gbpaud": "#007550"
+        },
+        {
+            "gbpchf": "#3D2981"
+        },
+        {
+            "gbpjpy": "#7B5A52"
+        },
+        {
+            "gbpusd": "#8B0E2A"
+        },
+        {
+            "gold": "#F89A19"
+        },
+        {
+            "nzdusd": "#C76126"
+        },
+        {
+            "usdcad": "#E06665"
+        },
+        {
+            "usdchf": "#A21E65"
+        },
+        {
+            "usdjpy": "#F65026"
+        },
+        {
+            "usdmxn": "#9F1D21"
+        }
+    ]
+}

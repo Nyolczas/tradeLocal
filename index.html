@@ -1,46 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"> </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script>
+        google.charts.load('current', {
+            'packages': ['corechart']
+        });
 
-        $(function() {
-    
-    
-       var people = [];
-    
-       $.getJSON('people.json', function(data) {
-           $.each(data.person, function(i, f) {
-              var tblRow = "<tr>" + "<td>" + f.firstName + "</td>" +
-               "<td>" + f.lastName + "</td>" + "<td>" + f.job + "</td>" + "<td>" + f.roll + "</td>" + "</tr>"
-               $(tblRow).appendTo("#userdata tbody");
-         });
-    
-       });
-    
-    });
+        google.charts.setOnLoadCallback(drawRobotsChart);
+
+        var robotsChartColors = ["#5D753E","#67976D","#939F4A","#E1926A",
+        "#B1626F","#00AB94","#00619F","#AF9C77","#894C69","#007550","#3D2981","#7B5A52",
+        "#8B0E2A","#F89A19","#C76126","#E06665","#A21E65","#F65026"];
+
+         function drawRobotsChart() {
+            $.ajax({
+                url: "data//robotsDaily.json",
+                dataType: "json",
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+                    var robotsDaily = [
+                        ['date', 'audusd', 'audcad', 'audjpy', 'cadjpy',
+                            'chfjpy', 'euraud', 'eurgbp', 'eurjpy',
+                            'eurusd', 'gbpaud', 'gbpchf', 'gbpjpy',
+                            'gbpusd', 'gold', 'nzdusd', 'usdcad',
+                            'usdchf', 'usdjpy'
+
+                        ]
+                    ];
+
+                    $.each(data, function (index, value) {
+                        robotsDaily.push([value.date, value.audusd,
+                            value.audcad, value.audjpy, value.cadjpy, value.chfjpy, value
+                            .euraud,
+                            value.eurgbp, value.eurjpy, value.eurusd,
+                            value.gbpaud, value.gbpchf, value.gbpjpy,
+                            value.gbpusd, value.gold, value.nzdusd, value.usdcad, value
+                            .usdchf, value.usdjpy
+                        ]);
+                    });
+
+                    var options = {
+                        colors: robotsChartColors
+                    };
+
+                    var figures = google.visualization.arrayToDataTable(robotsDaily);
+                    var chart = new google.visualization.LineChart(document.getElementById('robotsChartDiv'));
+                    chart.draw(figures, options);
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert('Hiba');
+                }
+            });
+        }
     </script>
+
+    <style>
+        #robotsChartDiv {
+            height: 100vh;
+        }
+    </style>
 </head>
+
 <body>
-    <div class="wrapper">
-        <div class="profile">
-           <table id= "userdata">
-          <thead>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email Address</th>
-                    <th>City</th>
-                </thead>
-              <tbody>
-        
-               </tbody>
-           </table>
-        
-        </div>
-        </div>
+    <div id="robotsChartDiv"></div>
 </body>
+
 </html>
